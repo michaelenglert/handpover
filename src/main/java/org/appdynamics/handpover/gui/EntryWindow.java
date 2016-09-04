@@ -65,7 +65,7 @@ public class EntryWindow extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         PROTOCOL.addItem(Globals.CONTROLLER_HTTP);
-        PROTOCOL.addItem(Globals.CONTROLLER_HTTPS);
+        //PROTOCOL.addItem(Globals.CONTROLLER_HTTPS);
 
         HOSTNAME.getDocument().addDocumentListener(textListener());
         PORT.getDocument().addDocumentListener(textListener());
