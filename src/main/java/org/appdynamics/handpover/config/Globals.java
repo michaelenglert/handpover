@@ -51,6 +51,10 @@ public class Globals {
     public static final String EXCEL_CONTROLLER_SETTINGS = "controller_settings";
     public static final String EXCEL_CONTROLLER_AUDIT = "controller_audit";
 
-    public static final String ERROR_HTTP = "Some Connectivity Issue - HTTP error code ";
+    public static final String ERROR_HTTP = "Some Connectivity Issue - HTTP error code";
+    public static final String ERROR_FOLDER = "Could not create output folder";
     public static final String ERROR_NO_ADMIN = "Your are not admin. Please use an admin user for the AppDynamics Controller.";
+    public static final String ERROR = "Error";
+    public static final String DONE = "Done";
+    public static final String DONE_MESSAGE = "Output can be found at: ";
 }

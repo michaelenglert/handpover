@@ -20,7 +20,14 @@ public class Excel {
         template_is.close();
         File outputFolder = new File (Globals.OUTPUT_FOLDER);
 
-        if (!outputFolder.exists()) {outputFolder.mkdir(); }
+        if (!outputFolder.exists()) {
+            Boolean result = outputFolder.mkdir();
+            if (!result) {
+                throw new RuntimeException(Globals.ERROR_FOLDER);
+            }
+        }
+
+
 
         FileOutputStream fos = new FileOutputStream(Globals.OUTPUT_FOLDER+Globals.EXCEL_FILE);
         workbook.write(fos);

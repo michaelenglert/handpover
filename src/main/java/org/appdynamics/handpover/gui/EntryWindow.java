@@ -114,9 +114,10 @@ public class EntryWindow extends JDialog {
                     progressBar.setValue(90);
                     Zip.zipFiles();
                     progressBar.setValue(100);
+                    JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + System.getProperty("user.home") + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
+                    JOptionPane.showMessageDialog(null, e.getMessage(), Globals.ERROR,
                             JOptionPane.ERROR_MESSAGE);
                     progressBar.setValue(0);
                 }
