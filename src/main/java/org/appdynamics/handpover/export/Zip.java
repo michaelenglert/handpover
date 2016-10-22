@@ -19,6 +19,7 @@ public class Zip {
 
         ZipOutputStream zos = new ZipOutputStream(fos);
 
+        assert files != null;
         for (File file : files) {
 
             byte[] buffer = new byte[1024];

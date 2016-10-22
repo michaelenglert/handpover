@@ -1,5 +1,7 @@
 package org.appdynamics.handpover.json;
 
+import org.appdynamics.handpover.config.Globals;
+
 import java.util.List;
 
 /**
@@ -48,7 +50,7 @@ public class User {
     }
 
     public String toString() {
-        return  id + " " + version + " " + name + " " + nameUnique + " " + builtIn + " " + createdBy + " " + createdOn + " " + modifiedBy + " " + modifiedOn + " " + displayName + " " + password + " " + roles + " " + accountRoleIds + " " + email + " " + providerUniqueName + " " + securityProviderType + " " + mobileDeviceUuids;
+        return  id + Globals.SPACE + version + Globals.SPACE + name + Globals.SPACE + nameUnique + Globals.SPACE + builtIn + Globals.SPACE + createdBy + Globals.SPACE + createdOn + Globals.SPACE + modifiedBy + Globals.SPACE + modifiedOn + Globals.SPACE + displayName + Globals.SPACE + password + Globals.SPACE + roles + Globals.SPACE + accountRoleIds + Globals.SPACE + email + Globals.SPACE + providerUniqueName + Globals.SPACE + securityProviderType + Globals.SPACE + mobileDeviceUuids;
     }
 
     public int getId() {

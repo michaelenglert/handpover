@@ -32,7 +32,11 @@ public class GetSettings {
 
         for (Settings settings : settingsList)
         {
-            excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 5, settings.getValue());
+            excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 0, settings.getName());
+            excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 1, settings.getDescription());
+            excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 2, settings.getScope());
+            excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 3, settings.getUpdateable());
+            excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 4, settings.getValue());
             rowIndex++;
         }
         excel.closeFile();

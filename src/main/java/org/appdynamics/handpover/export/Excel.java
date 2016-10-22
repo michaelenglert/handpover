@@ -26,14 +26,11 @@ public class Excel {
                 throw new RuntimeException(Globals.ERROR_FOLDER);
             }
         }
-
-
-
         FileOutputStream fos = new FileOutputStream(Globals.OUTPUT_FOLDER+Globals.EXCEL_FILE);
         workbook.write(fos);
         fos.close();
     }
-    public void writeToFile (String inSheet, int inRow, int inColumn, String data) throws Exception {
+    public void writeToFile (String inSheet, int inRow, int inColumn, String data) {
         Sheet sheet = workbook.getSheet(inSheet);
         if (sheet == null) sheet = workbook.createSheet(inSheet);
         Row row = sheet.getRow(inRow);

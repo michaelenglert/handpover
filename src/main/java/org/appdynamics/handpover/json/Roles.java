@@ -1,5 +1,7 @@
 package org.appdynamics.handpover.json;
 
+import org.appdynamics.handpover.config.Globals;
+
 /**
  * Created by michi on 03.09.16.
  */
@@ -24,7 +26,7 @@ public class Roles {
     }
 
     public String toString() {
-        return  "[" + id + " " + version + " " + name + " " + nameUnique + " " + description + " " + displayName + "]";
+        return Globals.OPENING_SBRACKETS + id + Globals.SPACE + version + Globals.SPACE + name + Globals.SPACE + nameUnique + Globals.SPACE + description + Globals.SPACE + displayName + Globals.CLOSING_SBRACKETS;
     }
 
     public int getId() {

@@ -4,13 +4,13 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import org.appdynamics.handpover.config.Globals;
-//import com.sun.jersey.api.client.filter.LoggingFilter;
+import com.sun.jersey.api.client.filter.LoggingFilter;
 
 /**
  * Created by michi on 28.08.16.
  */
 class Base {
-    static ClientResponse getClientResponse(String url) throws Exception {
+    static ClientResponse getClientResponse(String url) {
         Client client = Client.create();
         //client.addFilter(new LoggingFilter(System.out));
         WebResource resource = client.resource(url);

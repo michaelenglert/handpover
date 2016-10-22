@@ -105,10 +105,8 @@ public class EntryWindow extends JDialog {
                     progressBar.setValue(30);
                     excel.createInitial();
                     progressBar.setValue(50);
-                    //GetApps.doGetApps();
-                    //progressBar.setValue(40);
+                    GetApps.doGetApps();
                     GetSettings.doGetControllerSettings();
-                    //progressBar.setValue(50);
                     GetAudit.doGetAudit();
                     progressBar.setValue(80);
                     GetLogs.doGetControllerLogs();
@@ -118,7 +116,7 @@ public class EntryWindow extends JDialog {
                     JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + new File("").getAbsolutePath() + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage(), Globals.ERROR,
+                    JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR,
                             JOptionPane.ERROR_MESSAGE);
                     progressBar.setValue(0);
                 }
@@ -218,21 +216,23 @@ public class EntryWindow extends JDialog {
         label_password.setText("Password");
         EntryWindow.add(label_password, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         PROTOCOL = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        PROTOCOL.setModel(defaultComboBoxModel1);
         EntryWindow.add(PROTOCOL, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         HOSTNAME = new JTextField();
-        HOSTNAME.setText("");
+        HOSTNAME.setText("5.189.161.196");
         EntryWindow.add(HOSTNAME, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PORT = new JTextField();
-        PORT.setText("");
+        PORT.setText("2080");
         EntryWindow.add(PORT, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         ACCOUNTNAME = new JTextField();
         ACCOUNTNAME.setText("customer1");
         EntryWindow.add(ACCOUNTNAME, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         USER = new JTextField();
-        USER.setText("");
+        USER.setText("user");
         EntryWindow.add(USER, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PASSWORD = new JPasswordField();
-        PASSWORD.setText("");
+        PASSWORD.setText("57vOfhGT5YV");
         EntryWindow.add(PASSWORD, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PREVIEW = new JTextField();
         PREVIEW.setEditable(false);

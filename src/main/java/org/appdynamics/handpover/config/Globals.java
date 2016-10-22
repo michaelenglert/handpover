@@ -38,11 +38,15 @@ public class Globals {
     public static final String API_GET_USER = "/restui/user/getUser";
     public static final String API_DASHBOARD_EXPORT = "/CustomDashboardImportExportServlet?dashboardId=";
     public static final String API_APP_LIST = "/rest/applications";
+    public static final String API_BT_LIST = "/business-transactions";
+    public static final String API_TIER_LIST = "/tiers";
+    public static final String API_NODE_LIST = "/nodes";
+    public static final String API_BACKEND_LIST = "/backends";
     public static final String API_OUTPUT = "?output=JSON";
     public static final String API_AUDIT_START = "?startTime=";
     public static final String API_AUDIT_END = "&endTime=";
     public static final String API_CONTROLLER_LOGS = "/FileUploadServlet?action=CONTROLLER_LOGS";
-    public static final int API_AUDIT_DAYS = -90;
+    public static final int API_AUDIT_DAYS = -30;
 
     public static final String EXCEL_FILE = "export.xlsx";
     public static final String CONTROLLER_LOG_FILES = "controller-logs.zip";
@@ -50,8 +54,13 @@ public class Globals {
     public static final String OUTPUT_FILE = "output.zip";
     public static final String EXCEL_CONTROLLER_SETTINGS = "controller_settings";
     public static final String EXCEL_CONTROLLER_AUDIT = "controller_audit";
+    public static final String EXCEL_BTS = "_bts";
+    public static final String EXCEL_TIERS = "_tiers";
+    public static final String EXCEL_NODES = "_nodes";
+    public static final String NAME = "Name";
+    public static final String ID = "ID";
 
-    public static final String ERROR_HTTP = "Some Connectivity Issue - HTTP error code";
+    public static final String ERROR_HTTP = "Some Connectivity Issue - HTTP error code ";
     public static final String ERROR_FOLDER = "Could not create output folder";
     public static final String ERROR_NO_ADMIN = "Your are not admin. Please use an admin user for the AppDynamics Controller.";
     public static final String ERROR = "Error";

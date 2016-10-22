@@ -29,6 +29,10 @@ public class Audit {
         this.objectName = objectName;
     }
 
+    public String toString() {
+        return  Globals.OPENING_SBRACKETS + timeStamp + Globals.SPACE + auditDateTime + Globals.SPACE + accountName + Globals.SPACE + securityProviderType + Globals.SPACE + userName + Globals.SPACE + action + Globals.SPACE + objectType + Globals.SPACE + objectName + Globals.CLOSING_SBRACKETS;
+    }
+
     public String getTimestamp() {
         return timeStamp;
     }
@@ -60,9 +64,4 @@ public class Audit {
     public String getObjectName() {
         return objectName;
     }
-
-    public String toString() {
-        return  Globals.OPENING_SBRACKETS + timeStamp + Globals.SPACE + auditDateTime + Globals.SPACE + accountName + Globals.SPACE + securityProviderType + Globals.SPACE + userName + Globals.SPACE + action + Globals.SPACE + objectType + Globals.SPACE + objectName + Globals.CLOSING_SBRACKETS;
-    }
-
 }

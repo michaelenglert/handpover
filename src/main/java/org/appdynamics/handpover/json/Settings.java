@@ -23,6 +23,10 @@ public class Settings {
         this.value = value;
     }
 
+    public String toString() {
+        return  Globals.OPENING_SBRACKETS + description + Globals.SPACE + name + Globals.SPACE + scope + Globals.SPACE + updateable + Globals.SPACE + value + Globals.CLOSING_SBRACKETS;
+    }
+
     public String getValue() {
         return value;
     }
@@ -41,9 +45,5 @@ public class Settings {
 
     public String getUpdateable() {
         return updateable;
-    }
-
-    public String toString() {
-        return  Globals.OPENING_SBRACKETS + description + Globals.SPACE + name + Globals.SPACE + scope + Globals.SPACE + updateable + Globals.SPACE + value + Globals.CLOSING_SBRACKETS;
     }
 }
