@@ -24,6 +24,7 @@ public class GetApps {
         appList = objectMapper.readValue(output, mapType);
 
         for (Apps app : appList) {
+            GetAppSettings.doGetAppSettings(app);
             GetBts.doGetBusinessTransactions(app);
             GetTiers.doGetTiers(app);
             GetNodes.doGetNodes(app);

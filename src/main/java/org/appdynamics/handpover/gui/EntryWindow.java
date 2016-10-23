@@ -6,6 +6,7 @@ import org.appdynamics.handpover.export.Excel;
 import org.appdynamics.handpover.export.Zip;
 import org.appdynamics.handpover.rest.*;
 import org.appdynamics.handpover.config.Globals;
+import org.appdynamics.handpover.screenshots.Capture;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -102,13 +103,17 @@ public class EntryWindow extends JDialog {
                 try {
                     auth.doAuth(USER.getText(), password, ACCOUNTNAME.getText());
                     Excel excel = new Excel();
-                    progressBar.setValue(30);
+                    progressBar.setValue(20);
                     excel.createInitial();
-                    progressBar.setValue(50);
+                    progressBar.setValue(30);
                     GetApps.doGetApps();
+                    progressBar.setValue(40);
                     GetSettings.doGetControllerSettings();
+                    progressBar.setValue(50);
                     GetAudit.doGetAudit();
-                    progressBar.setValue(80);
+                    progressBar.setValue(60);
+                    Capture.doScreenCapture(USER.getText(), password);
+                    progressBar.setValue(70);
                     GetLogs.doGetControllerLogs();
                     progressBar.setValue(90);
                     Zip.zipFiles();
