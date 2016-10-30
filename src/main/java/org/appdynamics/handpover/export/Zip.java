@@ -12,6 +12,7 @@ import java.util.zip.ZipOutputStream;
  * Created by michi on 03.09.16.
  */
 public class Zip {
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void zipFiles() throws Exception{
         File sourceFile = new File(Globals.OUTPUT_FOLDER);
         File[] files = sourceFile.listFiles();
@@ -47,6 +48,7 @@ public class Zip {
         }
 
         new File(Globals.OUTPUT_FOLDER).delete();
+        new File("phantomjsdriver.log").delete();
     }
 
 }

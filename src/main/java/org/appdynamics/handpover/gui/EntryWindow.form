@@ -125,7 +125,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="5.189.161.196"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="3f81b" class="javax.swing.JTextField" binding="PORT">
@@ -135,7 +135,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="2080"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="24df9" class="javax.swing.JTextField" binding="ACCOUNTNAME">
@@ -155,7 +155,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="user"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="82900" class="javax.swing.JPasswordField" binding="PASSWORD">
@@ -165,7 +165,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="57vOfhGT5YV"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="9e755" class="javax.swing.JTextField" binding="PREVIEW">

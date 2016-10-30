@@ -3,6 +3,7 @@ package org.appdynamics.handpover.config;
 /**
  * Created by michi on 15.08.16.
  */
+@SuppressWarnings("unused")
 public class Globals {
     public static String URL;
 
@@ -20,6 +21,7 @@ public class Globals {
     public static final String EMPTY = "";
     public static final String SPACE = " ";
     public static final String ROOT = "/";
+    public static final String DOT = ".";
     public static final String OPENING_SBRACKETS = "[";
     public static final String CLOSING_SBRACKETS = "]";
     public static final String AT = "@";
@@ -44,6 +46,8 @@ public class Globals {
     public static final String API_BACKEND_LIST = "/backends";
     public static final String API_OUTPUT = "?output=JSON";
     public static final String API_AUDIT_START = "?startTime=";
+    public static final String URL_ENABLE_ACCOUNTS = "?enableAccounts=true";
+    public static final String URL_HOME = "#/location=AD_HOME_OVERVIEW";
     public static final String API_AUDIT_END = "&endTime=";
     public static final String API_CONTROLLER_LOGS = "/FileUploadServlet?action=CONTROLLER_LOGS";
     public static final int API_AUDIT_DAYS = -30;

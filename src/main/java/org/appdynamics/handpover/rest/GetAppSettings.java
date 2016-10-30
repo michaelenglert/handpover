@@ -12,9 +12,10 @@ import java.io.InputStream;
 /**
  * Created by michi on 23.10.16.
  */
+@SuppressWarnings("WeakerAccess")
 public class GetAppSettings {
     public static void doGetAppSettings(Apps app) throws Exception{
-        ClientResponse response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_APP_EXPORT + app.getId());;
+        ClientResponse response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_APP_EXPORT + app.getId())
         InputStream input = response.getEntityInputStream();
 
         byte[] byteArray = IOUtils.toByteArray(input);

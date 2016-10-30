@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by michi on 03.09.16.
  */
+@SuppressWarnings("WeakerAccess")
 public class CheckPermission {
 
     public static void doCheckPermission() throws Exception {

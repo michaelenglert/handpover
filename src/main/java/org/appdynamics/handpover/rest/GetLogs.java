@@ -13,7 +13,10 @@ import java.io.InputStream;
  */
 public class GetLogs {
     public static void doGetControllerLogs() throws Exception{
-        ClientResponse response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_CONTROLLER_LOGS);
+        ClientResponse response;
+
+        response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_CONTROLLER_LOGS);
+
         InputStream input = response.getEntityInputStream();
 
         byte[] byteArray = IOUtils.toByteArray(input);

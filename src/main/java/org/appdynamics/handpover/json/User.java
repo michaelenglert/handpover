@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by michi on 03.09.16.
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class User {
     public int id;
     public int version;

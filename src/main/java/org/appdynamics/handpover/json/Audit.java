@@ -5,6 +5,7 @@ import org.appdynamics.handpover.config.Globals;
 /**
  * Created by michi on 03.09.16.
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Audit {
     public String timeStamp;
     public String auditDateTime;

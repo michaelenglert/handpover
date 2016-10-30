@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
+@SuppressWarnings("unused")
 public class EntryWindow extends JDialog {
     private JPanel EntryWindow;
     private JButton buttonOK;
@@ -67,7 +68,7 @@ public class EntryWindow extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         PROTOCOL.addItem(Globals.CONTROLLER_HTTP);
-        //PROTOCOL.addItem(Globals.CONTROLLER_HTTPS);
+        PROTOCOL.addItem(Globals.CONTROLLER_HTTPS);
 
         HOSTNAME.getDocument().addDocumentListener(textListener());
         PORT.getDocument().addDocumentListener(textListener());
@@ -97,31 +98,34 @@ public class EntryWindow extends JDialog {
 
         class Worker extends SwingWorker<Void, Void> {
             protected Void doInBackground() {
-                Auth auth = new Auth();
+                //That structure is pretty shit, reconsider asap
+                Base base = new Base();
                 String password = new String(PASSWORD.getPassword());
                 progressBar.setValue(10);
                 try {
-                    auth.doAuth(USER.getText(), password, ACCOUNTNAME.getText());
+                    base.doAuth(USER.getText(), password, ACCOUNTNAME.getText());
                     Excel excel = new Excel();
                     progressBar.setValue(20);
-                    excel.createInitial();
-                    progressBar.setValue(30);
-                    GetApps.doGetApps();
-                    progressBar.setValue(40);
-                    GetSettings.doGetControllerSettings();
-                    progressBar.setValue(50);
-                    GetAudit.doGetAudit();
-                    progressBar.setValue(60);
-                    Capture.doScreenCapture(USER.getText(), password);
+                     excel.createInitial();
+                     progressBar.setValue(30);
+                     GetApps.doGetApps();
+                     progressBar.setValue(40);
+                     GetSettings.doGetControllerSettings();
+                     progressBar.setValue(50);
+                     GetAudit.doGetAudit();
+                     progressBar.setValue(60);
+                    Capture.doScreenCapture();
                     progressBar.setValue(70);
-                    GetLogs.doGetControllerLogs();
+                    if (!Globals.URL.contains("saas.appdynamics.com")) {
+                        GetLogs.doGetControllerLogs();
+                    }
                     progressBar.setValue(90);
                     Zip.zipFiles();
                     progressBar.setValue(100);
                     JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + new File("").getAbsolutePath() + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR,
+                    JOptionPane.showMessageDialog(null, e.getMessage(), Globals.ERROR,
                             JOptionPane.ERROR_MESSAGE);
                     progressBar.setValue(0);
                 }
@@ -225,16 +229,16 @@ public class EntryWindow extends JDialog {
         PROTOCOL.setModel(defaultComboBoxModel1);
         EntryWindow.add(PROTOCOL, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         HOSTNAME = new JTextField();
-        HOSTNAME.setText("5.189.161.196");
+        HOSTNAME.setText("paid130.saas.appdynamics.com");
         EntryWindow.add(HOSTNAME, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PORT = new JTextField();
-        PORT.setText("2080");
+        PORT.setText("");
         EntryWindow.add(PORT, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         ACCOUNTNAME = new JTextField();
-        ACCOUNTNAME.setText("customer1");
+        ACCOUNTNAME.setText("SAPSE");
         EntryWindow.add(ACCOUNTNAME, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         USER = new JTextField();
-        USER.setText("user");
+        USER.setText("michi");
         EntryWindow.add(USER, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PASSWORD = new JPasswordField();
         PASSWORD.setText("57vOfhGT5YV");

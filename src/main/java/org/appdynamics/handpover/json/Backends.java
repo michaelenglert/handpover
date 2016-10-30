@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by michi on 18.09.16.
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Backends {
     public String applicationComponentNodeId;
     public String exitPointType;

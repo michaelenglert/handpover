@@ -14,6 +14,7 @@ import java.util.*;
 /**
  * Created by michi on 31.08.16.
  */
+@SuppressWarnings("WeakerAccess")
 public class GetAudit {
     public static void doGetAudit() throws Exception{
         DateFormat dateFormat = new SimpleDateFormat(Globals.AUDIT_TIMESTAMP);

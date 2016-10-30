@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by michi on 31.08.16.
  */
+@SuppressWarnings("WeakerAccess")
 public class GetSettings {
 
     public static void doGetControllerSettings() throws Exception{

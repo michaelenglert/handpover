@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by michi on 19.09.16.
  */
+@SuppressWarnings("WeakerAccess")
 public class GetTiers {
     public static void doGetTiers (Apps app) throws Exception {
         ClientResponse response;
