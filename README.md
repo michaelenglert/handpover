@@ -11,8 +11,8 @@
 
 If you want to build the package by yourself
 
-1. git clone https://github.com/michaelenglert/handpover.git
-2. cd handpover
-3. mvn clean compile assembly:single
-4. cd target
-5. java -jar PoV-Handover-Tool-<Version>-jar-with-dependencies.jar
+1. `git clone https://github.com/michaelenglert/handpover.git`
+2. `cd handpover`
+3. `mvn clean compile assembly:single`
+4. `cd target`
+5. `java -jar PoV-Handover-Tool-<Version>-jar-with-dependencies.jar`
