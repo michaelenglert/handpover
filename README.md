@@ -4,10 +4,12 @@
 * Single Executable
 * Java 1.6 and above
 
-## Run
-1.
+## Download and run
 
-## Build
+1. [Download](https://drive.google.com/file/d/0BwPLxa1Qpa9MbWQ1eGcwbFQ0T00/view?usp=sharing)
+2. `java -jar <Downloaded.jar>`
+
+## Build yourself
 
 If you want to build the package by yourself
 
