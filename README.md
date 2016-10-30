@@ -18,3 +18,17 @@ If you want to build the package by yourself
 3. `mvn clean compile assembly:single`
 4. `cd target`
 5. `java -jar PoV-Handover-Tool-<Version>-jar-with-dependencies.jar`
+
+## Current Capabilities
+
+* Excel Export
+ * Controller Settings
+ * Controller Audit
+ * Apps
+ * BTs
+ * Tiers
+ * Nodes
+* XML
+ * Application Configs
+* Screenshots
+ * Homepage
