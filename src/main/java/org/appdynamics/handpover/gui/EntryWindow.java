@@ -14,7 +14,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class EntryWindow extends JDialog {
     private JPanel EntryWindow;
     private JButton buttonOK;
