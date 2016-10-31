@@ -1,9 +1,14 @@
 package org.appdynamics.handpover.rest;
 
-import javax.net.ssl.*;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.client.urlconnection.HTTPSProperties;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import java.util.Map;
 
 /**
  * Created by michi on 29.10.16.
@@ -11,32 +16,23 @@ import java.security.cert.CertificateException;
 @SuppressWarnings("WeakerAccess")
 public class SslClientHelper {
     @SuppressWarnings("WeakerAccess")
-    public static class SSLUtil {
-        protected static SSLContext getInsecureSSLContext()
-                throws KeyManagementException, NoSuchAlgorithmException {
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return null;
+    public Client hostIgnoringClient() throws Exception{
+            SSLContext sslcontext = SSLContext.getInstance( "TLS" );
+            sslcontext.init( null, null, null );
+            DefaultClientConfig config = new DefaultClientConfig();
+            Map<String, Object> properties = config.getProperties();
+            HTTPSProperties httpsProperties = new HTTPSProperties(
+                    new HostnameVerifier()
+                    {
+                        @Override
+                        public boolean verify( String s, SSLSession sslSession )
+                        {
+                            return true;
                         }
+                    }, sslcontext
+            );
+            properties.put( HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, httpsProperties );
+            return Client.create( config );
 
-                        public void checkClientTrusted(
-                                final java.security.cert.X509Certificate[] arg0, final String arg1)
-                                throws CertificateException {
-                        }
-
-                        public void checkServerTrusted(
-                                final java.security.cert.X509Certificate[] arg0, final String arg1)
-                                throws CertificateException {
-                        }
-
-                    }
-            };
-
-            final SSLContext sslcontext = SSLContext.getInstance("SSL");
-            sslcontext.init(null, trustAllCerts,
-                    new java.security.SecureRandom());
-            return sslcontext;
-        }
     }
 }

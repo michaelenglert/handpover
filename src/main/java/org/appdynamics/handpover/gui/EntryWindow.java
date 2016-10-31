@@ -6,7 +6,6 @@ import org.appdynamics.handpover.export.Excel;
 import org.appdynamics.handpover.export.Zip;
 import org.appdynamics.handpover.rest.*;
 import org.appdynamics.handpover.config.Globals;
-import org.appdynamics.handpover.screenshots.Capture;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -113,8 +112,6 @@ public class EntryWindow extends JDialog {
                     GetSettings.doGetControllerSettings();
                     progressBar.setValue(50);
                     GetAudit.doGetAudit();
-                    progressBar.setValue(60);
-                    Capture.doScreenCapture();
                     progressBar.setValue(70);
                     if (!Globals.URL.contains("saas.appdynamics.com")) {
                         GetLogs.doGetControllerLogs();
