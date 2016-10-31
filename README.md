@@ -32,3 +32,5 @@ If you want to build the package by yourself
  * Application Configs
 * Screenshots
  * Homepage
+* Logs
+ * Controller Logs (not for SaaS)
