@@ -3,11 +3,7 @@ package org.appdynamics.handpover.rest;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-import com.sun.jersey.client.urlconnection.HTTPSProperties;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.appdynamics.handpover.config.Globals;
 
 import javax.ws.rs.core.NewCookie;
@@ -63,13 +59,7 @@ public class Base {
         Client client = Client.create();
 
         if (url.startsWith(Globals.CONTROLLER_HTTPS)) {
-            final ClientConfig config = new DefaultClientConfig();
-            config.getProperties()
-                    .put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES,
-                            new HTTPSProperties(
-                                    SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER,
-                                    SslClientHelper.SSLUtil.getInsecureSSLContext()));
-            client = Client.create(config);
+            client = new SslClientHelper().hostIgnoringClient();
         }
 
         return client.resource(url);
