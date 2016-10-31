@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by michi on 28.08.16.
  */
-@SuppressWarnings("WeakerAccess")
 public class Base {
     public static NewCookie authCookie;
     public static NewCookie sessionCookie;
@@ -43,9 +42,6 @@ public class Base {
     }
 
     static ClientResponse getClientResponse(String url) throws Exception{
-
-
-
         ClientResponse response = getWebResource(url).cookie(Base.authCookie).cookie(Base.sessionCookie).get(ClientResponse.class);
 
         if (response.getStatus() != 200) {
@@ -55,7 +51,7 @@ public class Base {
         return response;
     }
 
-    static WebResource getWebResource(String url) throws Exception{
+    private static WebResource getWebResource(String url) throws Exception{
         Client client = Client.create();
 
         if (url.startsWith(Globals.CONTROLLER_HTTPS)) {
