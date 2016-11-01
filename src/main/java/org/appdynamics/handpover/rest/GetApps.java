@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.ClientResponse;
 import org.appdynamics.handpover.config.Globals;
+import org.appdynamics.handpover.export.Excel;
 import org.appdynamics.handpover.export.Folder;
 import org.appdynamics.handpover.json.Apps;
 
@@ -33,6 +34,8 @@ public class GetApps implements Runnable {
 
         if (!output.isEmpty()) {
             Folder.createFolder(Globals.APP_SETTINGS_FOLDER);
+            Excel excel = new Excel();
+            excel.createFile(Globals.APPS_FILE);
             for (Apps app : appList) {
                 GetAppSettings.doGetAppSettings(app);
                 GetBts.doGetBusinessTransactions(app);
