@@ -6,7 +6,7 @@
 
 ## Download and run
 
-1. [Download](https://drive.google.com/file/d/0BwPLxa1Qpa9MUS15ZVRLUXh5Vjg/view?usp=sharing)
+1. [Download](https://drive.google.com/file/d/0BwPLxa1Qpa9MbVNhZlR5eWF1Wmc/view?usp=sharing)
 2. `java -jar <Downloaded.jar>`
 
 ## Build yourself
