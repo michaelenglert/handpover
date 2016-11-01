@@ -39,7 +39,14 @@ public class GetSettings implements Runnable{
         Excel excel = new Excel();
         excel.createFile(Globals.SETTINGS_FILE);
         excel.openFile(Globals.SETTINGS_FILE);
-        int rowIndex = 1;
+        int rowIndex = 0;
+
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 0, "Name");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 1, "Description");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 2, "Scope");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 3, "Updateable");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 4, "Value");
+        rowIndex++;
 
         for (Settings settings : settingsList)
         {
@@ -50,6 +57,7 @@ public class GetSettings implements Runnable{
             excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 4, settings.getValue());
             rowIndex++;
         }
+
         excel.closeFile(Globals.SETTINGS_FILE);
     }
 }
