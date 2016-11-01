@@ -14,13 +14,21 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class EntryWindow extends JDialog {
     private JPanel EntryWindow;
     private JButton buttonOK;
     private JButton buttonCancel;
     @SuppressWarnings("Since15")
+    private JLabel label_protocol;
+    private JLabel label_hostname;
+    private JLabel label_port;
+    private JLabel label_accountname;
+    private JLabel label_user;
+    private JLabel label_password;
     private JComboBox PROTOCOL;
     private JTextField HOSTNAME;
     private JTextField PORT;
@@ -28,12 +36,6 @@ public class EntryWindow extends JDialog {
     private JTextField USER;
     private JPasswordField PASSWORD;
     private JTextField PREVIEW;
-    private JLabel label_protocol;
-    private JLabel label_hostname;
-    private JLabel label_port;
-    private JLabel label_accountname;
-    private JLabel label_user;
-    private JLabel label_password;
     private JProgressBar progressBar;
 
     private EntryWindow() {
@@ -98,34 +100,36 @@ public class EntryWindow extends JDialog {
 
         class Worker extends SwingWorker<Void, Void> {
             protected Void doInBackground() {
-                //That structure is pretty shit, reconsider asap
+                ExecutorService executor = Executors.newFixedThreadPool(5);
                 Base base = new Base();
                 String password = new String(PASSWORD.getPassword());
                 progressBar.setValue(10);
                 try {
                     base.doAuth(USER.getText(), password, ACCOUNTNAME.getText());
                     Excel excel = new Excel();
-                    progressBar.setValue(20);
                     excel.createInitial();
-                    progressBar.setValue(30);
-                    GetApps.doGetApps();
+                    progressBar.setValue(20);
+                    new GetApps().run();
                     progressBar.setValue(40);
-                    GetSettings.doGetControllerSettings();
-                    progressBar.setValue(50);
-                    GetAudit.doGetAudit();
+                    new GetSettings().run();
                     progressBar.setValue(60);
-                    Capture.doScreenCapture();
-                    progressBar.setValue(70);
+                    new GetAudit().run();
+                    progressBar.setValue(80);
                     if (!Globals.URL.contains("saas.appdynamics.com")) {
-                        GetLogs.doGetControllerLogs();
+                        executor.execute(new GetLogs());
                     }
-                    progressBar.setValue(90);
-                    Zip.zipFiles();
+                    executor.execute(new Capture());
+                    executor.execute(new GetDashboards());
+                    executor.shutdown();
+                    while (!executor.isTerminated()) {
+                        progressBar.setValue(Globals.PROGRESS);
+                    }
+                    Zip.zipDirectory();
                     progressBar.setValue(100);
                     JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + new File("").getAbsolutePath() + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage(), Globals.ERROR,
+                    JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR,
                             JOptionPane.ERROR_MESSAGE);
                     progressBar.setValue(0);
                 }
@@ -229,19 +233,19 @@ public class EntryWindow extends JDialog {
         PROTOCOL.setModel(defaultComboBoxModel1);
         EntryWindow.add(PROTOCOL, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         HOSTNAME = new JTextField();
-        HOSTNAME.setText("");
+        HOSTNAME.setText("5.189.161.196");
         EntryWindow.add(HOSTNAME, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PORT = new JTextField();
-        PORT.setText("");
+        PORT.setText("2081");
         EntryWindow.add(PORT, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         ACCOUNTNAME = new JTextField();
         ACCOUNTNAME.setText("customer1");
         EntryWindow.add(ACCOUNTNAME, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         USER = new JTextField();
-        USER.setText("");
+        USER.setText("user");
         EntryWindow.add(USER, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PASSWORD = new JPasswordField();
-        PASSWORD.setText("");
+        PASSWORD.setText("57vOfhGT5YV");
         EntryWindow.add(PASSWORD, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         PREVIEW = new JTextField();
         PREVIEW.setEditable(false);
