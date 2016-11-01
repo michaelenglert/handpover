@@ -11,8 +11,15 @@ import java.io.InputStream;
 /**
  * Created by michi on 01.09.16.
  */
-public class GetLogs {
-    public static void doGetControllerLogs() throws Exception{
+public class GetLogs implements Runnable {
+    public void run (){
+        try {
+            doGetControllerLogs();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private static void doGetControllerLogs() throws Exception{
         ClientResponse response;
 
         response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_CONTROLLER_LOGS);
