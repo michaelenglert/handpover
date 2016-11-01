@@ -34,3 +34,5 @@ If you want to build the package by yourself
  * Homepage
 * Logs
  * Controller Logs (not for SaaS)
+* JSON
+ * Dashboards
