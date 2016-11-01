@@ -54,7 +54,6 @@ public class Globals {
     public static final String URL_ENABLE_ACCOUNTS = "?enableAccounts=true";
     public static final String URL_HOME = "#/location=AD_HOME_OVERVIEW";
 
-    public static final String EXCEL_FILE = "export.xlsx";
     public static final String AUDIT_FILE = "audit.xlsx";
     public static final String SETTINGS_FILE = "settings.xlsx";
     public static final String APPS_FILE = "apps.xlsx";
