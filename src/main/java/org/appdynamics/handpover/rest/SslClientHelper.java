@@ -13,10 +13,8 @@ import java.util.Map;
 /**
  * Created by michi on 29.10.16.
  */
-@SuppressWarnings("WeakerAccess")
-public class SslClientHelper {
-    @SuppressWarnings("WeakerAccess")
-    public Client hostIgnoringClient() throws Exception{
+class SslClientHelper {
+    Client hostIgnoringClient() throws Exception{
             SSLContext sslcontext = SSLContext.getInstance( "TLS" );
             sslcontext.init( null, null, null );
             DefaultClientConfig config = new DefaultClientConfig();
