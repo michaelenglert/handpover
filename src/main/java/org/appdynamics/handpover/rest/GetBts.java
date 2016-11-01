@@ -32,7 +32,6 @@ public class GetBts {
     }
     private static void doWriteBusinessTransactions (Apps app, List<BusinessTransactions> btList) throws Exception {
         Excel excel = new Excel();
-        excel.createFile(Globals.APPS_FILE);
         excel.openFile(Globals.APPS_FILE);
 
         int rowIndex = 0;
