@@ -61,6 +61,8 @@ public class Capture implements Runnable{
             scrFile = driver.getScreenshotAs(OutputType.FILE);
             driver.quit();
             FileUtils.copyFile(scrFile, new File(Globals.OUTPUT_FOLDER + "screenshot.png"));
+            Globals.PROGRESS = Globals.PROGRESS + 10;
+
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.ClientResponse;
 import org.apache.commons.io.IOUtils;
 import org.appdynamics.handpover.config.Globals;
+import org.appdynamics.handpover.export.Folder;
 import org.appdynamics.handpover.json.DashboardList;
 
 import java.io.File;
@@ -33,19 +34,14 @@ public class GetDashboards implements Runnable{
 
         response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_DASHBOARD_LIST);
         String output = response.getEntity(String.class);
-        File dashboardFolder = new File (Globals.DASHBOARD_FOLDER);
+        Folder.createFolder(Globals.DASHBOARD_FOLDER);
 
-        if (!dashboardFolder.exists() && !output.isEmpty()) {
-            Boolean result = dashboardFolder.mkdir();
-            if (!result) {
-                throw new RuntimeException(Globals.ERROR_FOLDER);
-            }
-        }
         dashboardList = objectMapper.readValue(output, mapType);
 
         for (DashboardList dashboard : dashboardList) {
             GetDashboards.doGetDashboard(dashboard);
         }
+        Globals.PROGRESS = Globals.PROGRESS + 10;
     }
 
     private static void doGetDashboard(DashboardList dashboard) throws Exception{

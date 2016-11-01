@@ -53,11 +53,14 @@ public class GetAudit implements Runnable{
             cal.add(Calendar.DAY_OF_YEAR, 1);
             start = cal.getTime();
         }
+        Globals.PROGRESS = Globals.PROGRESS + 10;
     }
 
     public static void doWriteAudit(List<Audit> auditList) throws Exception {
         Excel excel = new Excel();
-        excel.openFile();
+        excel.createFile(Globals.AUDIT_FILE);
+        excel.openFile(Globals.AUDIT_FILE);
+
         int rowIndex = 1;
 
         for (Audit audit : auditList) {
@@ -70,6 +73,6 @@ public class GetAudit implements Runnable{
             excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 6, audit.getObjectName());
             rowIndex++;
         }
-        excel.closeFile();
+        excel.closeFile(Globals.AUDIT_FILE);
     }
 }

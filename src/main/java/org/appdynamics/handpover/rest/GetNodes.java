@@ -33,7 +33,7 @@ public class GetNodes {
     private static void doWriteNodes (Apps app, List<Nodes> nodeList) throws Exception{
         Excel excel = new Excel();
 
-        excel.openFile();
+        excel.openFile(Globals.APPS_FILE);
 
         int rowIndex = 0;
 
@@ -79,6 +79,6 @@ public class GetNodes {
 
             rowIndex++;
         }
-        excel.closeFile();
+        excel.closeFile(Globals.APPS_FILE);
     }
 }

@@ -29,6 +29,7 @@ public class GetLogs implements Runnable {
         byte[] byteArray = IOUtils.toByteArray(input);
 
         FileOutputStream fos = new FileOutputStream(new File(Globals.OUTPUT_FOLDER+Globals.CONTROLLER_LOG_FILES));
+        Globals.PROGRESS = Globals.PROGRESS + 10;
         fos.write(byteArray);
         fos.flush();
         fos.close();

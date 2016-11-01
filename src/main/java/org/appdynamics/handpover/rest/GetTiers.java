@@ -32,7 +32,7 @@ public class GetTiers {
     }
     private static void doWriteTiers (Apps app, List<Tiers> tierList) throws Exception {
         Excel excel = new Excel();
-        excel.openFile();
+        excel.openFile(Globals.APPS_FILE);
 
         int rowIndex = 0;
 
@@ -61,6 +61,6 @@ public class GetTiers {
             excel.writeToFile(app.getId() + Globals.EXCEL_TIERS, rowIndex, 5, tier.getAgentType());
             rowIndex++;
         }
-        excel.closeFile();
+        excel.closeFile(Globals.APPS_FILE);
     }
 }

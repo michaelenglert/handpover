@@ -32,11 +32,13 @@ public class GetSettings implements Runnable{
         String output = response.getEntity(String.class);
         settingsList = objectMapper.readValue(output, mapType);
         GetSettings.doWriteControllerSettings(settingsList);
+        Globals.PROGRESS = Globals.PROGRESS + 10;
     }
 
     public static void doWriteControllerSettings(List<Settings> settingsList) throws Exception {
         Excel excel = new Excel();
-        excel.openFile();
+        excel.createFile(Globals.SETTINGS_FILE);
+        excel.openFile(Globals.SETTINGS_FILE);
         int rowIndex = 1;
 
         for (Settings settings : settingsList)
@@ -48,6 +50,6 @@ public class GetSettings implements Runnable{
             excel.writeToFile(Globals.EXCEL_CONTROLLER_SETTINGS, rowIndex, 4, settings.getValue());
             rowIndex++;
         }
-        excel.closeFile();
+        excel.closeFile(Globals.SETTINGS_FILE);
     }
 }
