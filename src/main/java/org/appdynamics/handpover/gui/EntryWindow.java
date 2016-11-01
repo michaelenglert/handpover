@@ -100,6 +100,7 @@ public class EntryWindow extends JDialog {
 
         class Worker extends SwingWorker<Void, Void> {
             protected Void doInBackground() {
+                buttonOK.setEnabled(false);
                 ExecutorService executor = Executors.newFixedThreadPool(5);
                 Base base = new Base();
                 String password = new String(PASSWORD.getPassword());
@@ -123,8 +124,9 @@ public class EntryWindow extends JDialog {
                     JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + new File("").getAbsolutePath() + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR, JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, e.getMessage(), Globals.ERROR, JOptionPane.ERROR_MESSAGE);
                     progressBar.setValue(0);
+                    buttonOK.setEnabled(true);
                 }
                 return null;
             }
