@@ -13,22 +13,13 @@ public class Excel {
     private FileInputStream fis;
     private XSSFWorkbook workbook;
 
-    public void createInitial() throws Exception {
-        InputStream template_is;
-        template_is = getClass().getResourceAsStream(Globals.ROOT + Globals.EXCEL_FILE);
-        XSSFWorkbook workbook = new XSSFWorkbook(template_is);
-        template_is.close();
-        File outputFolder = new File (Globals.OUTPUT_FOLDER);
-
-        if (!outputFolder.exists()) {
-            Boolean result = outputFolder.mkdir();
-            if (!result) {
-                throw new RuntimeException(Globals.ERROR_FOLDER);
-            }
-        }
-        FileOutputStream fos = new FileOutputStream(Globals.OUTPUT_FOLDER+Globals.EXCEL_FILE);
+    public void createFile (String excelFile) throws Exception{
+        Folder.createFolder(Globals.EXCEL_FOLDER);
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        FileOutputStream fos = new FileOutputStream(Globals.EXCEL_FOLDER + excelFile);
         workbook.write(fos);
         fos.close();
+
     }
     public void writeToFile (String inSheet, int inRow, int inColumn, String data) {
         Sheet sheet = workbook.getSheet(inSheet);
@@ -38,13 +29,13 @@ public class Excel {
         Cell cell = row.getCell(inColumn, Row.CREATE_NULL_AS_BLANK);
         cell.setCellValue(data);
     }
-    public void openFile() throws Exception {
-        fis = new FileInputStream(Globals.OUTPUT_FOLDER+Globals.EXCEL_FILE);
+    public void openFile(String excelFile) throws Exception {
+        fis = new FileInputStream(Globals.EXCEL_FOLDER + excelFile);
         workbook = new XSSFWorkbook(fis);
     }
-    public void closeFile() throws Exception {
+    public void closeFile(String excelFile) throws Exception {
         fis.close();
-        FileOutputStream fos = new FileOutputStream(Globals.OUTPUT_FOLDER+Globals.EXCEL_FILE);
+        FileOutputStream fos = new FileOutputStream(Globals.EXCEL_FOLDER + excelFile);
         workbook.write(fos);
         fos.close();
     }
