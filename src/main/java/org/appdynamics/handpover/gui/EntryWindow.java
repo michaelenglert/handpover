@@ -100,6 +100,8 @@ public class EntryWindow extends JDialog {
 
         class Worker extends SwingWorker<Void, Void> {
             protected Void doInBackground() {
+                /* Start Timer **/
+                long startTime = System.currentTimeMillis();
                 ExecutorService executor = Executors.newFixedThreadPool(5);
                 Base base = new Base();
                 String password = new String(PASSWORD.getPassword());
@@ -127,6 +129,11 @@ public class EntryWindow extends JDialog {
                     Zip.zipDirectory();
                     progressBar.setValue(100);
                     JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + new File("").getAbsolutePath() + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
+
+                    /* Stop Timer **/
+                    long stopTime = System.currentTimeMillis();
+                    long elapsedTime = stopTime - startTime;
+                    System.out.println(elapsedTime);
                     dispose();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR,
