@@ -13,7 +13,15 @@ import java.util.List;
  * Created by michi on 31.08.16.
  */
 @SuppressWarnings("WeakerAccess")
-public class GetSettings {
+public class GetSettings implements Runnable{
+    @Override
+    public void run() {
+        try {
+            doGetControllerSettings();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void doGetControllerSettings() throws Exception{
         ClientResponse response = Base.getClientResponse(Globals.URL + Globals.CONTROLLER_ROOT + Globals.API_CONTROLLER_CONFIG + Globals.API_OUTPUT);
