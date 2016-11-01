@@ -15,8 +15,17 @@ import java.util.List;
 /**
  * Created by michi on 31.10.16.
  */
-public class GetDashboards {
-    public static void doGetDashboardList() throws Exception{
+public class GetDashboards implements Runnable{
+    @Override
+    public void run() {
+        try {
+            doGetDashboardList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void doGetDashboardList() throws Exception{
         ClientResponse response;
         List<DashboardList> dashboardList;
         ObjectMapper objectMapper = new ObjectMapper();
