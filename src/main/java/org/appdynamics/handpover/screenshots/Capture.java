@@ -18,8 +18,13 @@ import static java.lang.Thread.sleep;
 /**
  * Created by michi on 04.09.16.
  */
-public class Capture {
-    public static void doScreenCapture () {
+public class Capture implements Runnable{
+    @Override
+    public void run() {
+        doScreenCapture();
+    }
+
+    private static void doScreenCapture() {
         try {
             File phantomjs = Phanbedder.unpack();
             DesiredCapabilities dcaps = new DesiredCapabilities();
