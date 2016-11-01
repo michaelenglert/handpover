@@ -6,7 +6,6 @@ import org.appdynamics.handpover.export.Folder;
 import org.appdynamics.handpover.export.Zip;
 import org.appdynamics.handpover.rest.*;
 import org.appdynamics.handpover.config.Globals;
-import org.appdynamics.handpover.screenshots.Capture;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -110,7 +109,6 @@ public class EntryWindow extends JDialog {
                     if (!Globals.URL.contains("saas.appdynamics.com")) {
                         executor.execute(new GetLogs());
                     }
-                    executor.execute(new Capture());
                     executor.execute(new GetDashboards());
                     executor.execute(new GetApps());
                     executor.execute(new GetSettings());

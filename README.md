@@ -30,8 +30,6 @@ If you want to build the package by yourself
  * Nodes
 * XML
  * Application Configs
-* Screenshots
- * Homepage
 * Logs
  * Controller Logs (not for SaaS)
 * JSON

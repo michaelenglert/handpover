@@ -20,7 +20,6 @@ public class Zip {
         File sourceDir = new File(Globals.OUTPUT_FOLDER);
         zipSubDirectory("", sourceDir, zos);
         zos.close();
-        new File(Globals.PHANTOMJS_LOG_FILE).delete();
         FileUtils.deleteDirectory(new File(Globals.OUTPUT_FOLDER));
     }
 
