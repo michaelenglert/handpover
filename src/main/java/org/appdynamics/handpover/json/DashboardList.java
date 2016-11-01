@@ -1,12 +1,11 @@
 package org.appdynamics.handpover.json;
 
-import org.appdynamics.handpover.config.Globals;
-
 import java.util.List;
 
 /**
  * Created by michi on 31.10.16.
  **/
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class DashboardList {
     public String description;
     public String id;
