@@ -28,6 +28,7 @@ public class Excel {
         if (row == null) row = sheet.createRow(inRow);
         Cell cell = row.getCell(inColumn, Row.CREATE_NULL_AS_BLANK);
         cell.setCellValue(data);
+        sheet.autoSizeColumn(inColumn);
     }
     public void openFile(String excelFile) throws Exception {
         fis = new FileInputStream(Globals.EXCEL_FOLDER + excelFile);
