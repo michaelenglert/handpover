@@ -6,7 +6,7 @@ package org.appdynamics.handpover.config;
 @SuppressWarnings("unused")
 public class Globals {
     public static String URL;
-    public static final int PROGRESS = 90;
+    public static float PROGRESS = 0;
 
     public static final String CONTROLLER_HTTP = "http://";
     public static final String CONTROLLER_HTTPS = "https://";
@@ -55,6 +55,9 @@ public class Globals {
     public static final String URL_HOME = "#/location=AD_HOME_OVERVIEW";
 
     public static final String EXCEL_FILE = "export.xlsx";
+    public static final String AUDIT_FILE = "audit.xlsx";
+    public static final String SETTINGS_FILE = "settings.xlsx";
+    public static final String APPS_FILE = "apps.xlsx";
     public static final String JSON_FILE = ".json";
     public static final String XML_FILE = ".xml";
     public static final String CONTROLLER_LOG_FILES = "controller-logs.zip";
@@ -62,6 +65,8 @@ public class Globals {
     public static final String OUTPUT_FOLDER = "output/";
     public static final String DASHBOARD_FOLDER = OUTPUT_FOLDER + "dashboards/";
     public static final String APP_SETTINGS_FOLDER = OUTPUT_FOLDER + "app_settings/";
+    public static final String EXCEL_FOLDER = OUTPUT_FOLDER + "excel/";
+    public static final String SCREENSHOT_FOLDER = OUTPUT_FOLDER + "excel/";
     public static final String OUTPUT_FILE = "output.zip";
     public static final String EXCEL_CONTROLLER_SETTINGS = "controller_settings";
     public static final String EXCEL_CONTROLLER_AUDIT = "controller_audit";
