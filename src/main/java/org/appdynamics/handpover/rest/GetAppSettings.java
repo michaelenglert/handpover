@@ -20,7 +20,7 @@ public class GetAppSettings {
 
         byte[] byteArray = IOUtils.toByteArray(input);
 
-        FileOutputStream fos = new FileOutputStream(new File(Globals.OUTPUT_FOLDER + app.getName() + ".xml"));
+        FileOutputStream fos = new FileOutputStream(new File(Globals.APP_SETTINGS_FOLDER + app.getName() + Globals.XML_FILE));
         fos.write(byteArray);
         fos.flush();
         fos.close();
