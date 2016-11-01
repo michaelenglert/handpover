@@ -2,7 +2,7 @@ package org.appdynamics.handpover.gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import org.appdynamics.handpover.export.Excel;
+import org.appdynamics.handpover.export.Folder;
 import org.appdynamics.handpover.export.Zip;
 import org.appdynamics.handpover.rest.*;
 import org.appdynamics.handpover.config.Globals;
@@ -100,44 +100,30 @@ public class EntryWindow extends JDialog {
 
         class Worker extends SwingWorker<Void, Void> {
             protected Void doInBackground() {
-                /* Start Timer **/
-                long startTime = System.currentTimeMillis();
                 ExecutorService executor = Executors.newFixedThreadPool(5);
                 Base base = new Base();
                 String password = new String(PASSWORD.getPassword());
-                progressBar.setValue(10);
+                Folder.createFolder(Globals.OUTPUT_FOLDER);
                 try {
                     base.doAuth(USER.getText(), password, ACCOUNTNAME.getText());
-                    Excel excel = new Excel();
-                    excel.createInitial();
-                    progressBar.setValue(20);
-                    new GetApps().run();
-                    progressBar.setValue(40);
-                    new GetSettings().run();
-                    progressBar.setValue(60);
-                    new GetAudit().run();
-                    progressBar.setValue(80);
                     if (!Globals.URL.contains("saas.appdynamics.com")) {
                         executor.execute(new GetLogs());
                     }
                     executor.execute(new Capture());
                     executor.execute(new GetDashboards());
+                    executor.execute(new GetApps());
+                    executor.execute(new GetSettings());
+                    executor.execute(new GetAudit());
                     executor.shutdown();
                     while (!executor.isTerminated()) {
-                        progressBar.setValue(Globals.PROGRESS);
+                        progressBar.setValue((int) Globals.PROGRESS);
                     }
                     Zip.zipDirectory();
                     progressBar.setValue(100);
                     JOptionPane.showMessageDialog(null, Globals.DONE_MESSAGE + new File("").getAbsolutePath() + Globals.ROOT + Globals.OUTPUT_FILE, Globals.DONE, JOptionPane.INFORMATION_MESSAGE);
-
-                    /* Stop Timer **/
-                    long stopTime = System.currentTimeMillis();
-                    long elapsedTime = stopTime - startTime;
-                    System.out.println(elapsedTime);
                     dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR,
-                            JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, e.getStackTrace(), Globals.ERROR, JOptionPane.ERROR_MESSAGE);
                     progressBar.setValue(0);
                 }
                 return null;
