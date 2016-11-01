@@ -16,6 +16,8 @@ import java.util.*;
  */
 @SuppressWarnings("WeakerAccess")
 public class GetAudit implements Runnable{
+    private static int rowIndex = 0;
+    private static Excel excel = new Excel();
     @Override
     public void run() {
         try {
@@ -35,6 +37,19 @@ public class GetAudit implements Runnable{
         Date start;
         Date end;
 
+        excel.createFile(Globals.AUDIT_FILE);
+        excel.openFile(Globals.AUDIT_FILE);
+
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 0, "AuditDateTime");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 1, "AccountName");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 2, "SecurityProviderType");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 3, "UserName");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 4, "Action");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 5, "ObjectType");
+        excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 6, "ObjectName");
+
+        rowIndex++;
+
         cal.add(Calendar.DAY_OF_YEAR, Globals.API_AUDIT_DAYS);
         start = cal.getTime();
 
@@ -53,16 +68,11 @@ public class GetAudit implements Runnable{
             cal.add(Calendar.DAY_OF_YEAR, 1);
             start = cal.getTime();
         }
+        excel.closeFile(Globals.AUDIT_FILE);
         Globals.PROGRESS = Globals.PROGRESS + 10;
     }
 
     public static void doWriteAudit(List<Audit> auditList) throws Exception {
-        Excel excel = new Excel();
-        excel.createFile(Globals.AUDIT_FILE);
-        excel.openFile(Globals.AUDIT_FILE);
-
-        int rowIndex = 1;
-
         for (Audit audit : auditList) {
             excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 0, audit.getAuditDateTime());
             excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 1, audit.getAccountName());
@@ -73,6 +83,5 @@ public class GetAudit implements Runnable{
             excel.writeToFile(Globals.EXCEL_CONTROLLER_AUDIT, rowIndex, 6, audit.getObjectName());
             rowIndex++;
         }
-        excel.closeFile(Globals.AUDIT_FILE);
     }
 }
