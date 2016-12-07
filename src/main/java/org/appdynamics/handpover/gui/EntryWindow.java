@@ -38,7 +38,7 @@ public class EntryWindow extends JDialog {
     private JTextField PREVIEW;
     private JProgressBar progressBar;
 
-    private EntryWindow() {
+    public EntryWindow() {
         setLocationRelativeTo(null);
         setContentPane(EntryWindow);
         setModal(true);
