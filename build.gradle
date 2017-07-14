@@ -5,15 +5,15 @@ version = '1.4'
 
 description = """"""
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 
 applicationName = 'handover-tool'
 mainClassName = 'org.appdynamics.handpover.cli.CLIMain'
 
 repositories {
-     jcenter();
+     jcenter()
 
 }
 dependencies {
@@ -24,5 +24,5 @@ dependencies {
     compile group: 'com.intellij', name: 'forms_rt', version:'7.0.3'
     compile group: 'net.anthavio', name: 'phanbedder-2.1.1', version:'1.0.0'
     compile group: 'com.github.detro.ghostdriver', name: 'phantomjsdriver', version:'1.1.0'
-    compile 'com.appdynamics.ace.cli:CommandFramework:1.6.1'
+    compile group: 'com.github.leika.CommandFramework'
 }
