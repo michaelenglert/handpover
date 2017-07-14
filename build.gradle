@@ -1,0 +1,28 @@
+apply plugin: 'application'
+
+group = 'org.appdynamics.handpover'
+version = '1.4'
+
+description = """"""
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+
+applicationName = 'handover-tool'
+mainClassName = 'org.appdynamics.handpover.cli.CLIMain'
+
+repositories {
+     jcenter();
+
+}
+dependencies {
+    compile group: 'com.sun.jersey', name: 'jersey-client', version:'1.19'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.2.3'
+    compile group: 'org.apache.poi', name: 'poi', version:'3.14'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version:'3.14'
+    compile group: 'com.intellij', name: 'forms_rt', version:'7.0.3'
+    compile group: 'net.anthavio', name: 'phanbedder-2.1.1', version:'1.0.0'
+    compile group: 'com.github.detro.ghostdriver', name: 'phantomjsdriver', version:'1.1.0'
+    compile 'com.appdynamics.ace.cli:CommandFramework:1.6.1'
+}
