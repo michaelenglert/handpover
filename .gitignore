@@ -9,7 +9,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -19,8 +18,8 @@ hs_err_pid*
 .gradle
 /build/
 /out/
-/gradle
-.idea
+/gradle/
+.idea/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -35,5 +34,11 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 .gitignore
-.gradle/
-.idea
+PoV-Handover-Tool.iml
+handpover.iml
+src/main/main.iml
+src/test/
+target/archive-tmp/
+target/generated-sources/
+target/maven-status/
+target/test-classes/
