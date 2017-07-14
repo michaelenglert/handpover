@@ -19,7 +19,7 @@ hs_err_pid*
 /build/
 /out/
 /gradle/
-.idea/
+/.idea/
 
 # Ignore Gradle GUI config
 gradle-app.setting
